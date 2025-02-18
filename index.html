@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Katalogi i Fletueshëm - Butonat Vertikale dhe Header</title>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Turn.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/4.1.0/turn.min.js"></script>
+  <style>
+    body {
+      background: #f0f0f0;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    /* Header për informacionin e kontaktit dhe emrin e firmës */
+    #header {
+      width: 100%;
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px 0;
+      font-size: 18px;
+    }
+    /* Kontejneri për katalogun dhe butonat e navigimit */
+    #catalog-container {
+      position: relative;
+      width: 800px;
+      height: 600px;
+      margin-top: 20px;
+    }
+    /* Katalogu që përdoret nga Turn.js */
+    #catalog {
+      width: 800px;
+      height: 600px;
+    }
+    /* Secila faqe e katalogut */
+    .page {
+      width: 800px;
+      height: 600px;
+      background: white;
+      border: 1px solid #ccc;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    /* Kopertina me logo */
+    .cover {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #333;
+    }
+    .cover .logo {
+      max-width: 80%;
+      max-height: 80%;
+    }
+    /* Fotografitë në faqet e tjera */
+    .page img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    /* Kontejneri për butonat e navigimit (vertikalisht) */
+    #nav-container {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 10;
+    }
+    /* Stilizimi i butonave të navigimit */
+    .nav-btn {
+      background-color: rgba(0,0,0,0.5);
+      border: none;
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Headeri me numër kontakti dhe emrin e firmës -->
+  <div id="header">
+    <p>Contact: +383 49 660753 | Arianit Seven</p>
+  </div>
+
+  <!-- Kontejneri për katalog dhe butonat e navigimit -->
+  <div id="catalog-container">
+    <div id="catalog">
+      <!-- Faqja e parë: Kopertina me logo -->
+      <div class="page cover">
+        <img src="logo.png" alt="Logo" class="logo">
+      </div>
+      <!-- Faqet me fotografi -->
+      <div class="page">
+        <img src="photo1.jpg" alt="Foto 1">
+      </div>
+      <div class="page">
+        <img src="photo2.jpg" alt="Foto 2">
+      </div>
+      <div class="page">
+        <img src="photo3.jpg" alt="Foto 3">
+      </div>
+      <div class="page">
+        <img src="photo4.jpg" alt="Foto 4">
+      </div>
+    </div>
+    
+  </div>
+
+  <script>
+    $(document).ready(function(){
+      // Inicializimi i Turn.js me modalitetin "single"
+      $("#catalog").turn({
+        width: 800,
+        height: 600,
+        display: 'single',
+        autoCenter: true,
+        gradients: true,
+        acceleration: true
+      });
+      
+      // Butonat e navigimit
+      $("#prev-btn").click(function(){
+        $("#catalog").turn("previous");
+      });
+      $("#next-btn").click(function(){
+        $("#catalog").turn("next");
+      });
+    });
+  </script>
+</body>
+</html>
